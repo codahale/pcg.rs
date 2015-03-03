@@ -49,8 +49,8 @@
 }</pre><div class='docblock'><p>A <a href="http://www.pcg-random.org">PCG</a>-based random number generator.</p>
 
 <p>The PCG algorithm is not suitable for cryptographic purposes but provides an
-excellent combination of speed and unpredictability. It is slightly faster
-than <code>rand::XorShiftRng</code> and provides much higher-quality output.</p>
+excellent combination of speed and unpredictability. It is only slightly
+slower than <code>rand::XorShiftRng</code> but provides much higher-quality output.</p>
 
 <p>This particular implementation uses a 128-bit state value, has a period of
 2<sup>64,</sup> and uses the <code>XSH-RR</code> output function.</p>

@@ -45,8 +45,8 @@
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
         </span><a id='src-0' href='../src/pcg/lib.rs.html#1-22'>[src]</a></span></h1>
 <div class='docblock'><p>An implementation of the <a href="http://www.pcg-random.org">PCG</a> random number
-generator, which is faster than <code>rand::XorShiftRng</code> while providing
-higher-quality output.</p>
+generator, which is only slightly slower than <code>rand::XorShiftRng</code> while
+providing higher-quality output.</p>
 <pre id='rust-example-rendered' class='rust '>
 <span class='kw'>use</span> <span class='ident'>rand</span>::{<span class='ident'>Rng</span>, <span class='ident'>SeedableRng</span>};
 <span class='kw'>use</span> <span class='ident'>pcg</span>::<span class='ident'>PcgRng</span>;
