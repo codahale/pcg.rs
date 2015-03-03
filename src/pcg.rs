@@ -1,9 +1,14 @@
 use rand::{Rng, SeedableRng};
 
-/// A [PCG](http://www.pcg-random.org) random number generator.
+/// A [PCG](http://www.pcg-random.org)-based random number generator.
 ///
 /// The PCG algorithm is not suitable for cryptographic purposes but provides an
-/// excellent balance of speed and unpredictability.
+/// excellent combination of speed and unpredictability. It is slightly faster
+/// than `rand::XorShiftRng` and provides much higher-quality output.
+///
+/// This particular implementation uses a 128-bit state value, has a period of
+/// 2^64, and uses the `XSH-RR` output function.
+///
 pub struct PcgRng {
     state: u64,
     inc: u64,
