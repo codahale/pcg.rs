@@ -40,17 +40,45 @@
         </form>
     </nav>
 
-    <section id='main' class="content source"><pre class="line-numbers"><span id="1">1</span>
-<span id="2">2</span>
-<span id="3">3</span>
-<span id="4">4</span>
-<span id="5">5</span>
-<span id="6">6</span>
-<span id="7">7</span>
-<span id="8">8</span>
+    <section id='main' class="content source"><pre class="line-numbers"><span id="1"> 1</span>
+<span id="2"> 2</span>
+<span id="3"> 3</span>
+<span id="4"> 4</span>
+<span id="5"> 5</span>
+<span id="6"> 6</span>
+<span id="7"> 7</span>
+<span id="8"> 8</span>
+<span id="9"> 9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! An implementation of the [PCG](http://www.pcg-random.org) random number</span>
-<span class='doccomment'>//! generator.</span>
+<span class='doccomment'>//! generator, which is faster than `rand::XorShiftRng` while providing</span>
+<span class='doccomment'>//! higher-quality output.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ```ignore</span>
+<span class='doccomment'>//! use rand::{Rng, SeedableRng};</span>
+<span class='doccomment'>//! use pcg::PcgRng;</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! let mut rng = PcgRng::from_seed([100, 200]);</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! let x = rng.gen_range(10, 100);</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! assert!(x &gt;= 10);</span>
+<span class='doccomment'>//! assert!(x &lt;= 100);</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! ```</span>
 
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>rand</span>;
 

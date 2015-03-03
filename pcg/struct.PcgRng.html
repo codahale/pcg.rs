@@ -26,7 +26,7 @@
 
     <section class="sidebar">
         
-        <p class='location'><a href='index.html'>pcg</a></p><div class='block struct'><h2>Structs</h2><a class='struct current' href='struct.PcgRng.html' title='A [PCG](http://www.pcg-random.org) random number generator.'>PcgRng</a></div>
+        <p class='location'><a href='index.html'>pcg</a></p><div class='block struct'><h2>Structs</h2><a class='struct current' href='struct.PcgRng.html' title='A [PCG](http://www.pcg-random.org)-based random number generator.'>PcgRng</a></div>
     </section>
 
     <nav class="sub">
@@ -43,13 +43,17 @@
     <section id='main' class="content struct">
 <h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>pcg</a>::<wbr><a class='struct' href=''>PcgRng</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-10' href='../src/pcg/pcg.rs.html#7-10'>[src]</a></span></h1>
+        </span><a id='src-10' href='../src/pcg/pcg.rs.html#12-15'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct PcgRng {
     // some fields omitted
-}</pre><div class='docblock'><p>A <a href="http://www.pcg-random.org">PCG</a> random number generator.</p>
+}</pre><div class='docblock'><p>A <a href="http://www.pcg-random.org">PCG</a>-based random number generator.</p>
 
 <p>The PCG algorithm is not suitable for cryptographic purposes but provides an
-excellent balance of speed and unpredictability.</p>
+excellent combination of speed and unpredictability. It is slightly faster
+than <code>rand::XorShiftRng</code> and provides much higher-quality output.</p>
+
+<p>This particular implementation uses a 128-bit state value, has a period of
+2<sup>64,</sup> and uses the <code>XSH-RR</code> output function.</p>
 </div><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='struct' href='../pcg/struct.PcgRng.html' title='pcg::PcgRng'>PcgRng</a></code></h3><div class='impl-items'><h4 id='method.new_unseeded' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new_unseeded' class='fnname'>new_unseeded</a>() -&gt; <a class='struct' href='../pcg/struct.PcgRng.html' title='pcg::PcgRng'>PcgRng</a></code></h4>
 <div class='docblock'><p>Returns a new <code>PcgRng</code> instance which is not seeded.</p>
 

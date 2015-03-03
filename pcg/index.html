@@ -43,15 +43,27 @@
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>pcg</a><wbr></span><span class='out-of-band'><a href='stability.html'>[stability]</a> <span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-0' href='../src/pcg/lib.rs.html#1-8'>[src]</a></span></h1>
+        </span><a id='src-0' href='../src/pcg/lib.rs.html#1-22'>[src]</a></span></h1>
 <div class='docblock'><p>An implementation of the <a href="http://www.pcg-random.org">PCG</a> random number
-generator.</p>
+generator, which is faster than <code>rand::XorShiftRng</code> while providing
+higher-quality output.</p>
+<pre id='rust-example-rendered' class='rust '>
+<span class='kw'>use</span> <span class='ident'>rand</span>::{<span class='ident'>Rng</span>, <span class='ident'>SeedableRng</span>};
+<span class='kw'>use</span> <span class='ident'>pcg</span>::<span class='ident'>PcgRng</span>;
+
+<span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>rng</span> <span class='op'>=</span> <span class='ident'>PcgRng</span>::<span class='ident'>from_seed</span>([<span class='number'>100</span>, <span class='number'>200</span>]);
+
+<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='ident'>rng</span>.<span class='ident'>gen_range</span>(<span class='number'>10</span>, <span class='number'>100</span>);
+
+<span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>x</span> <span class='op'>&gt;=</span> <span class='number'>10</span>);
+<span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>x</span> <span class='op'>&lt;=</span> <span class='number'>100</span>);
+</pre>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr>
                         <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.PcgRng.html'
                                title='pcg::PcgRng'>PcgRng</a></td>
-                        <td class='docblock short'><p>A <a href="http://www.pcg-random.org">PCG</a> random number generator.</p>
+                        <td class='docblock short'><p>A <a href="http://www.pcg-random.org">PCG</a>-based random number generator.</p>
 </td>
                     </tr>
                 </table></section>

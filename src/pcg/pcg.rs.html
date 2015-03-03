@@ -119,13 +119,23 @@
 <span id="77">77</span>
 <span id="78">78</span>
 <span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>rand</span>::{<span class='ident'>Rng</span>, <span class='ident'>SeedableRng</span>};
 
-<span class='doccomment'>/// A [PCG](http://www.pcg-random.org) random number generator.</span>
+<span class='doccomment'>/// A [PCG](http://www.pcg-random.org)-based random number generator.</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// The PCG algorithm is not suitable for cryptographic purposes but provides an</span>
-<span class='doccomment'>/// excellent balance of speed and unpredictability.</span>
+<span class='doccomment'>/// excellent combination of speed and unpredictability. It is slightly faster</span>
+<span class='doccomment'>/// than `rand::XorShiftRng` and provides much higher-quality output.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// This particular implementation uses a 128-bit state value, has a period of</span>
+<span class='doccomment'>/// 2^64, and uses the `XSH-RR` output function.</span>
+<span class='doccomment'>///</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>PcgRng</span> {
     <span class='ident'>state</span>: <span class='ident'>u64</span>,
     <span class='ident'>inc</span>: <span class='ident'>u64</span>,
