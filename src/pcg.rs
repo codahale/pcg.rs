@@ -54,13 +54,8 @@ impl SeedableRng<[u64; 2]> for PcgRng {
         assert!(!seed.iter().all(|&x| x == 0),
                 "PcgRng::from_seed called with an all zero seed.");
 
-        let mut rng = PcgRng {
-            state: 0,
-            inc: (seed[1] << 1) | 1,
-        };
-        rng.next_u32();
-        rng.state += seed[0];
-        rng.next_u32();
+        let mut rng = PcgRng::new_unseeded();
+        rng.reseed(seed);
         rng
     }
 }
