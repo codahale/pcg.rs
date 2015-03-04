@@ -4,11 +4,12 @@ use rand::{Rng, SeedableRng};
 ///
 /// The PCG algorithm is not suitable for cryptographic purposes but provides an
 /// excellent combination of speed and unpredictability. It is only slightly
-/// slower than `rand::XorShiftRng` but provides much higher-quality output.
+/// slower than `rand::XorShiftRng` but provides much higher-quality output. In
+/// addition, it also provides for the use of multiple distinct _streams_ of
+/// outputs given a common seed.
 ///
 /// This particular implementation uses a 128-bit state value, has a period of
 /// 2^64, and uses the `XSH-RR` output function.
-///
 pub struct PcgRng {
     state: u64,
     inc: u64,
@@ -25,6 +26,20 @@ impl PcgRng {
         PcgRng {
             state: 0x853c49e6748fea9b,
             inc: 0xda3e39cb94b95bdb,
+        }
+    }
+
+    /// Sets the stream ID of the `PcgRng`.
+    pub fn set_stream(&mut self, id: u64) {
+        self.inc = id;
+    }
+
+    /// Returns a new `PcgRng` instance with the same state as `self`, but with
+    /// the given stream ID.
+    pub fn with_stream(&self, id: u64) -> PcgRng {
+        PcgRng {
+            state: self.state,
+            inc: id,
         }
     }
 }
