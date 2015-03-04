@@ -43,10 +43,8 @@ impl Rng for PcgRng {
 }
 
 impl SeedableRng<[u64; 2]> for PcgRng {
-    /// Reseed a `PcgRng`. This will panic if `seed` is entirely 0.
+    /// Reseed a `PcgRng`.
     fn reseed(&mut self, seed: [u64; 2]) {
-        assert!(!seed.iter().all(|&x| x == 0),
-                "PcgRng.reseed called with an all zero seed.");
         self.state = 0;
         self.inc = (seed[1] << 1) | 1;
         self.next_u32();
@@ -54,11 +52,8 @@ impl SeedableRng<[u64; 2]> for PcgRng {
         self.next_u32();
     }
 
-    /// Create a new `PcgRng`. This will panic if `seed` is entirely 0.
+    /// Create a new `PcgRng`.
     fn from_seed(seed: [u64; 2]) -> PcgRng {
-        assert!(!seed.iter().all(|&x| x == 0),
-                "PcgRng::from_seed called with an all zero seed.");
-
         let mut rng = PcgRng::new_unseeded();
         rng.reseed(seed);
         rng
