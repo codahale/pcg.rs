@@ -134,6 +134,7 @@
 <span id="92">92</span>
 <span id="93">93</span>
 <span id="94">94</span>
+<span id="95">95</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>rand</span>::{<span class='ident'>Rng</span>, <span class='ident'>SeedableRng</span>};
 
@@ -186,7 +187,8 @@
     <span class='attribute'>#[<span class='ident'>inline</span>(<span class='ident'>always</span>)]</span>
     <span class='kw'>fn</span> <span class='ident'>next_u32</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>let</span> <span class='ident'>old</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>state</span>;
-        <span class='self'>self</span>.<span class='ident'>state</span> <span class='op'>=</span> <span class='ident'>old</span> <span class='op'>*</span> <span class='number'>6364136223846793005</span> <span class='op'>+</span> <span class='self'>self</span>.<span class='ident'>inc</span>;
+        <span class='self'>self</span>.<span class='ident'>state</span> <span class='op'>=</span> <span class='ident'>old</span>.<span class='ident'>wrapping_mul</span>(<span class='number'>6364136223846793005</span>)
+                        .<span class='ident'>wrapping_add</span>(<span class='self'>self</span>.<span class='ident'>inc</span>);
         <span class='kw'>let</span> <span class='ident'>xor</span> <span class='op'>=</span> (((<span class='ident'>old</span> <span class='op'>&gt;&gt;</span> <span class='number'>18</span>) <span class='op'>^</span> <span class='ident'>old</span>) <span class='op'>&gt;&gt;</span> <span class='number'>27</span>) <span class='kw'>as</span> <span class='ident'>u32</span>;
         <span class='kw'>let</span> <span class='ident'>rot</span> <span class='op'>=</span> <span class='ident'>old</span> <span class='op'>&gt;&gt;</span> <span class='number'>59</span> <span class='kw'>as</span> <span class='ident'>u32</span>;
         <span class='kw'>let</span> <span class='ident'>out</span> <span class='op'>=</span> (<span class='ident'>xor</span> <span class='op'>&gt;&gt;</span> <span class='ident'>rot</span>) <span class='op'>|</span> (<span class='ident'>xor</span> <span class='op'>&lt;&lt;</span> ((<span class='op'>-</span><span class='ident'>rot</span>) <span class='kw-2'>&amp;</span> <span class='number'>31</span>));
