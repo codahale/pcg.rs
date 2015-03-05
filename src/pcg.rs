@@ -49,7 +49,8 @@ impl Rng for PcgRng {
     #[inline(always)]
     fn next_u32(&mut self) -> u32 {
         let old = self.state;
-        self.state = old * 6364136223846793005 + self.inc;
+        self.state = old.wrapping_mul(6364136223846793005)
+                        .wrapping_add(self.inc);
         let xor = (((old >> 18) ^ old) >> 27) as u32;
         let rot = old >> 59 as u32;
         let out = (xor >> rot) | (xor << ((-rot) & 31));

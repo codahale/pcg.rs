@@ -15,6 +15,8 @@
 //!
 //! ```
 
+#![feature(core)]
+
 extern crate rand;
 
 mod pcg;
