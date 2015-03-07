@@ -64,7 +64,7 @@ impl SeedableRng<[u64; 2]> for PcgRng {
         self.state = 0;
         self.inc = (seed[1] << 1) | 1;
         self.next_u32();
-        self.state += seed[0];
+        self.state = self.state.wrapping_add(seed[0]);
         self.next_u32();
     }
 
@@ -91,5 +91,11 @@ mod test {
         // test vectors from pcg32-global-demo
         assert_eq!(v, vec![0xa15c02b7, 0x7b47f409, 0xba1d3330,
                            0x83d2f293, 0xbfa4784b, 0xcbed606e]);
+    }
+
+    #[test]
+    fn overflow() {
+        let mut rng = PcgRng::from_seed([!0, 54]);
+        rng.next_u32();
     }
 }
