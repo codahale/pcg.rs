@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["PcgRng","A [PCG](http://www.pcg-random.org)-based random number generator."]]});
