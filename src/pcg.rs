@@ -2,14 +2,13 @@ use rand::{Rng, SeedableRng};
 
 /// A [PCG](http://www.pcg-random.org)-based random number generator.
 ///
-/// The PCG algorithm is not suitable for cryptographic purposes but provides an
-/// excellent combination of speed and unpredictability. It is only slightly
-/// slower than `rand::XorShiftRng` but provides much higher-quality output. In
-/// addition, it also provides for the use of multiple distinct _streams_ of
-/// outputs given a common seed.
+/// The PCG algorithm is not suitable for cryptographic purposes but provides an excellent
+/// combination of speed and unpredictability. It is only slightly slower than `rand::XorShiftRng`
+/// but provides much higher-quality output. In addition, it also provides for the use of multiple
+/// distinct _streams_ of outputs given a common seed.
 ///
-/// This particular implementation uses a 128-bit state value, has a period of
-/// 2^64, and uses the `XSH-RR` output function.
+/// This particular implementation uses a 128-bit state value, has a period of 2^64, and uses the
+/// `XSH-RR` output function.
 pub struct PcgRng {
     state: u64,
     inc: u64,
@@ -18,10 +17,9 @@ pub struct PcgRng {
 impl PcgRng {
     /// Returns a new `PcgRng` instance which is not seeded.
     ///
-    /// The initial values of this RNG are constants, so all generators created
-    /// by this function will yield the same stream of random numbers. It is
-    /// highly recommended that this is created through `SeedableRng` instead of
-    /// this function.
+    /// The initial values of this RNG are constants, so all generators created by this function
+    /// will yield the same stream of random numbers. It is highly recommended that this is created
+    /// through `SeedableRng` instead of this function.
     pub fn new_unseeded() -> PcgRng {
         PcgRng {
             state: 0x853c49e6748fea9b,
@@ -34,8 +32,7 @@ impl PcgRng {
         self.inc = id;
     }
 
-    /// Returns a new `PcgRng` instance with the same state as `self`, but with
-    /// the given stream ID.
+    /// Returns a new `PcgRng` instance with the same state as `self`, but with the given stream ID.
     pub fn with_stream(&self, id: u64) -> PcgRng {
         PcgRng {
             state: self.state,
