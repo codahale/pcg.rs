@@ -1,4 +1,4 @@
-#![feature(test)]
+#![feature(convert,test)]
 
 extern crate pcg;
 extern crate rand;
