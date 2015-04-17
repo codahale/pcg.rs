@@ -137,7 +137,6 @@
 <span id="95">95</span>
 <span id="96">96</span>
 <span id="97">97</span>
-<span id="98">98</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>rand</span>::{<span class='ident'>Rng</span>, <span class='ident'>SeedableRng</span>};
 
@@ -183,7 +182,6 @@
 }
 
 <span class='kw'>impl</span> <span class='ident'>Rng</span> <span class='kw'>for</span> <span class='ident'>PcgRng</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unsigned_negation</span>)]</span>
     <span class='attribute'>#[<span class='ident'>inline</span>(<span class='ident'>always</span>)]</span>
     <span class='kw'>fn</span> <span class='ident'>next_u32</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>u32</span> {
         <span class='kw'>let</span> <span class='ident'>old</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>state</span>;
@@ -191,7 +189,7 @@
                         .<span class='ident'>wrapping_add</span>(<span class='self'>self</span>.<span class='ident'>inc</span>);
         <span class='kw'>let</span> <span class='ident'>xor</span> <span class='op'>=</span> (((<span class='ident'>old</span> <span class='op'>&gt;&gt;</span> <span class='number'>18</span>) <span class='op'>^</span> <span class='ident'>old</span>) <span class='op'>&gt;&gt;</span> <span class='number'>27</span>) <span class='kw'>as</span> <span class='ident'>u32</span>;
         <span class='kw'>let</span> <span class='ident'>rot</span> <span class='op'>=</span> <span class='ident'>old</span> <span class='op'>&gt;&gt;</span> <span class='number'>59</span> <span class='kw'>as</span> <span class='ident'>u32</span>;
-        <span class='kw'>let</span> <span class='ident'>out</span> <span class='op'>=</span> (<span class='ident'>xor</span> <span class='op'>&gt;&gt;</span> <span class='ident'>rot</span>) <span class='op'>|</span> (<span class='ident'>xor</span> <span class='op'>&lt;&lt;</span> ((<span class='op'>-</span><span class='ident'>rot</span>) <span class='kw-2'>&amp;</span> <span class='number'>31</span>));
+        <span class='kw'>let</span> <span class='ident'>out</span> <span class='op'>=</span> (<span class='ident'>xor</span> <span class='op'>&gt;&gt;</span> <span class='ident'>rot</span>) <span class='op'>|</span> (<span class='ident'>xor</span> <span class='op'>&lt;&lt;</span> (((<span class='number'>0</span> <span class='kw'>as</span> <span class='ident'>u64</span>).<span class='ident'>wrapping_sub</span>(<span class='ident'>rot</span>)) <span class='kw-2'>&amp;</span> <span class='number'>31</span>));
         <span class='ident'>out</span>
     }
 }
