@@ -42,7 +42,6 @@ impl PcgRng {
 }
 
 impl Rng for PcgRng {
-    #[allow(unsigned_negation)]
     #[inline(always)]
     fn next_u32(&mut self) -> u32 {
         let old = self.state;
@@ -50,7 +49,7 @@ impl Rng for PcgRng {
                         .wrapping_add(self.inc);
         let xor = (((old >> 18) ^ old) >> 27) as u32;
         let rot = old >> 59 as u32;
-        let out = (xor >> rot) | (xor << ((-rot) & 31));
+        let out = (xor >> rot) | (xor << (((0 as u64).wrapping_sub(rot)) & 31));
         out
     }
 }
