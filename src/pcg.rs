@@ -85,8 +85,8 @@ mod test {
         let v: Vec<u32> = rng.gen_iter().take(6).collect();
 
         // test vectors from pcg32-global-demo
-        assert_eq!(v, vec![0xa15c02b7, 0x7b47f409, 0xba1d3330,
-                           0x83d2f293, 0xbfa4784b, 0xcbed606e]);
+        assert_eq!(v,
+                   vec![0xa15c02b7, 0x7b47f409, 0xba1d3330, 0x83d2f293, 0xbfa4784b, 0xcbed606e]);
     }
 
     #[test]
