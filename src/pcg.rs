@@ -9,6 +9,7 @@ use rand::{Rng, SeedableRng};
 ///
 /// This particular implementation uses a 128-bit state value, has a period of 2^64, and uses the
 /// `XSH-RR` output function.
+#[derive(Debug, Clone)]
 pub struct PcgRng {
     state: u64,
     inc: u64,
