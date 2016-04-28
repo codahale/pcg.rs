@@ -33,7 +33,8 @@ impl PcgRng {
         self.inc = id;
     }
 
-    /// Returns a new `PcgRng` instance with the same state as `self`, but with the given stream ID.
+    /// Returns a new `PcgRng` instance with the same state as `self`, but with the given stream
+    /// ID.
     pub fn with_stream(&self, id: u64) -> PcgRng {
         PcgRng {
             state: self.state,
