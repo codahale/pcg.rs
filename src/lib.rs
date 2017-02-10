@@ -15,6 +15,7 @@
 //! ```
 
 extern crate rand;
+extern crate rustc_serialize;
 
 mod pcg;
 

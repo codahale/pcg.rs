@@ -1,4 +1,4 @@
-use rand::{Rng, SeedableRng};
+use rand::{Rng, SeedableRng, Rand};
 
 /// A [PCG](http://www.pcg-random.org)-based random number generator.
 ///
@@ -9,7 +9,7 @@ use rand::{Rng, SeedableRng};
 ///
 /// This particular implementation uses a 128-bit state value, has a period of 2^64, and uses the
 /// `XSH-RR` output function.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, RustcEncodable, RustcDecodable)]
 pub struct PcgRng {
     state: u64,
     inc: u64,
@@ -71,6 +71,12 @@ impl SeedableRng<[u64; 2]> for PcgRng {
         let mut rng = PcgRng::new_unseeded();
         rng.reseed(seed);
         rng
+    }
+}
+
+impl Rand for PcgRng {
+    fn rand<R: Rng>(rng: &mut R) -> Self {
+        PcgRng { state: rng.next_u64(), inc: rng.next_u64() }
     }
 }
 
