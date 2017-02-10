@@ -1,4 +1,4 @@
-use rand::{Rng, SeedableRng};
+use rand::{Rng, SeedableRng, Rand};
 
 /// A [PCG](http://www.pcg-random.org)-based random number generator.
 ///
@@ -71,6 +71,12 @@ impl SeedableRng<[u64; 2]> for PcgRng {
         let mut rng = PcgRng::new_unseeded();
         rng.reseed(seed);
         rng
+    }
+}
+
+impl Rand for PcgRng {
+    fn rand<R: Rng>(rng: &mut R) -> Self {
+        PcgRng { state: rng.next_u64(), inc: rng.next_u64() }
     }
 }
 
