@@ -7,3 +7,8 @@ authors = ["Coda Hale <coda.hale@gmail.com>"]
 [dependencies]
 rand = "*"
 rustc-serialize = "*"
+serde = { version = "1.*.*", optional = true }
+serde_derive = { version = "1.*.*", optional = true }
+
+[features]
+serde_support = ["serde", "serde_derive"]

@@ -10,6 +10,7 @@ use rand::{Rng, SeedableRng, Rand};
 /// This particular implementation uses a 128-bit state value, has a period of 2^64, and uses the
 /// `XSH-RR` output function.
 #[derive(Debug, Clone, RustcEncodable, RustcDecodable)]
+#[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub struct PcgRng {
     state: u64,
     inc: u64,
